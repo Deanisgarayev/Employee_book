@@ -1,49 +1,75 @@
 public class Main {
-    
-    public static int[] countSalary() {
-        java.util.Random random = new java.util.Random();
-        int[] arr = new int[30];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(5000) + 5000;
-        }
-        return arr;
+    private static Employee[] employees = new Employee[5];
 
-        }
     public static void main(String[] args) {
-        int[] arr = countSalary();
-        int monthSpending = 0;
-        for (int i = 0; i < arr.length; i++) {
-            int current = arr[i];
-            monthSpending = monthSpending + current;
-        }
-        System.out.println("Сумма трат на зарплаты составила " + monthSpending + " рублей");
+        employees[0] = new Employee("Lapshin Alexander Nikolaevich", 1, 5000);
+        employees[1] = new Employee("Kurdyum Alexey Anatolyevich", 2, 3000);
+        employees[2] = new Employee("Gaziev Zhaudat Yaukhatovichh", 3, 4000);
+        employees[3] = new Employee("Shestakov Daniil Zakharovich", 2, 3500);
+        employees[4] = new Employee("Morozov Dmitry Yaroslavovich", 1, 4500);
 
-        int maxArr = -1;
-        for (int i = 0; i < arr.length; i++) {
-            int current = arr[i];
-            if (current > maxArr) {
-                maxArr = current;
-            }
-        }
-
-        System.out.println("Максимальная сумма трат на зарплаты составила " + maxArr + " рублей");
-        int minArr = arr[0];
-        for (int i = 0; i < arr.length; i++) {
-            int current = arr[i];
-            if (current < minArr) {
-                minArr = current;
-            }
-        }
-        System.out.println("Минимальная сумма трат на зарплаты составила " + minArr + " рублей");
-
-        int middleSpending = 0;
-        int day = 30;
-        for (int i = 0; i < arr.length; i++) {
-            int current = arr[i];
-            monthSpending = monthSpending + current;
-            middleSpending = monthSpending / day;
-        }
-        System.out.println("Средняя сумма трат на зарплаты составила " + middleSpending + " рублей");
+        printEmployees();
+        calculateTotalExpense(employees);
+        findEmployeeWithMinSalary(employees);
+        findEmployeeWithMaxSalary(employees);
+        calculateMiddleExpense(employees);
+        printEmployeesNames();
     }
 
+    public static void printEmployees() {
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+
+    public static void calculateTotalExpense(Employee[] employees) {
+        int sum = 0;
+        for (Employee employee : employees) {
+            sum += employee.getSalary();
+
+        }
+        System.out.println("Сумма трат на зарплаты составила =  " + sum);
+    }
+
+    public static void findEmployeeWithMinSalary(Employee[] employees) {
+        int minSalary = Integer.MAX_VALUE;
+        Employee resultedEmployee = null;
+        for (Employee employee : employees) {
+            if (employee.getSalary() < minSalary) {
+                minSalary = employee.getSalary();
+                resultedEmployee = employee;
+            }
+        }
+        System.out.println(resultedEmployee);
+    }
+
+    public static void findEmployeeWithMaxSalary(Employee[] employees) {
+        int maxSalary = Integer.MIN_VALUE;
+        Employee resultedEmployee = null;
+        for (Employee employee : employees) {
+            if (employee.getSalary() > maxSalary) {
+                maxSalary = employee.getSalary();
+                resultedEmployee = employee;
+            }
+        }
+        System.out.println(resultedEmployee);
+    }
+
+    public static void calculateMiddleExpense(Employee[] employees) {
+        int middleSum = 0;
+        int sum = 0;
+        int day = 30;
+        for (Employee employee : employees) {
+            sum += employee.getSalary();
+            middleSum = sum / day;
+
+        }
+        System.out.println("Сумма трат на зарплаты составила =  " + middleSum);
+    }
+
+    public static void printEmployeesNames() {
+        for (Employee employee : employees) {
+            System.out.println(employee.getFullName());
+        }
+    }
 }
