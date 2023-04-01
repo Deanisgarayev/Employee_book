@@ -1,13 +1,16 @@
 public class Main {
-    public static int[] countEmployee() {
+    
+    public static int[] countSalary() {
+        java.util.Random random = new java.util.Random();
         int[] arr = new int[30];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = 5000;
+            arr[i] = random.nextInt(5000) + 5000;
         }
         return arr;
-    }
+
+        }
     public static void main(String[] args) {
-        int[] arr = countEmployee();
+        int[] arr = countSalary();
         int monthSpending = 0;
         for (int i = 0; i < arr.length; i++) {
             int current = arr[i];
