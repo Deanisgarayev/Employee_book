@@ -1,17 +1,17 @@
 public class Employee {
-   private String fullName;
+    private String fullName;
+    private int department;
     private int salary;
-    private String department;
-//    private String electrician;
-//    private String stonemason;
-//    private String plumber;
-//    private String welder;
-//    private String carpenter;
+    private int id;
+    private static int counter = 1;
 
-    public Employee(String fullName, int salary, String department) {
+
+    public Employee(String fullName, int department, int salary) {
         this.fullName = fullName;
+        this.department = department;
         this.salary = salary;
-        this.department =department;
+        this.id = counter++;
+
     }
 
     public String getFullName() {
@@ -22,15 +22,20 @@ public class Employee {
         return this.salary;
     }
 
-    public String getDepartment() {
+    public int getDepartment() {
         return this.department;
     }
-    public void setSalary(int salary) {
-        this.salary = salary;
+
+    public int getId() {
+        return this.id;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(int department) {
         this.department = department;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @Override
